@@ -1,0 +1,30 @@
+
+experiment:
+  name: dpo_qwen2b_chartqa
+
+model:
+  policy:
+    name: Qwen2-VL-2B-Instruct
+    revision: main
+    dtype: bfloat16
+  reference:
+    name: Qwen2-VL-2B-Instruct
+    revision: main    
+    dtype: bfloat16
+    freeze: true
+  tokenizer:
+    name: Qwen2-VL-2B-Instruct
+    revision: main
+
+data:
+  train:
+    name: HuggingFaceM4/ChartQA
+    split: train
+  eval:
+    name: HuggingFaceM4/ChartQA
+    split: test
+    max_examples: 2000
+  formatting:
+    template: chatml
+    max_prompt_tokens: 1025
+    max_response_tokens: 512
